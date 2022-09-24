@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling Multiple Inputs with a Single onchange Handler in JavaScript</title>
+</head>
+<body>
+    <div id="root">
+        Your Name: &nbsp;&nbsp;&nbsp;<input name="full_name" type="text"><br><br>
+        Your Age: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="age" type="number"><br><br>
+        Your Gender: &nbsp;<input name="gender" type="text"><br><br>
+        Your Email: &nbsp;&nbsp;&nbsp;<input name="email" type="email"><br><br>
+        Your Mobile: &nbsp;<input name="mobile" type="number"><br><br>
+        Your Place: &nbsp;&nbsp;&nbsp;&nbsp;<input name="place" type="text">
+    </div>
+    <p><strong>Name: </strong><span class="name"></span></p>
+    <p><strong>Age: </strong><span class="age"></span></p>
+    <p><strong>Gender: </strong><span class="gender"></span></p>
+    <p><strong>Email: </strong><span class="email"></span></p>
+    <p><strong>Mobile: </strong><span class="mobile"></span></p>
+    <p><strong>Place: </strong><span class="place"></span></p>
+    <script type="text/javascript">
+        const val = document.querySelectorAll('input')
+        const name = document.querySelector('.name');
+        const age = document.querySelector('.age');
+        const gender = document.querySelector('.gender');
+        const email = document.querySelector('.email');
+        const mobile = document.querySelector('.mobile');
+        const place = document.querySelector('.place');
+        // define default object with empty values
+        const info = {
+                full_name: "",
+                age: "",
+                gender: "",
+                email: "",
+                mobile: "",
+                place: ""
+            }
+        const details = (event) => {
+            //Get input name from targetted name of input
+            const info_name = event.target.name;
+            //Get input name from targetted value of input
+            const value = event.target.value;
+            //Assign new object value from input by using name of input
+            info[info_name] = value;
+            name.innerHTML = info.full_name;
+            age.innerHTML = info.age;
+            gender.innerHTML = info.gender;
+            email.innerHTML = info.email;
+            mobile.innerHTML = info.mobile;
+            place.innerHTML = info.place;
+        }
+        // use FOR loop to set event for all input nodes
+        for(i=0; i < val.length; i++) {
+            val[i].addEventListener('input', details);
+        }
+    </script>
+</body>
+</html>
